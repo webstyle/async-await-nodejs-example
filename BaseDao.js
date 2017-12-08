@@ -14,16 +14,10 @@ class BaseDao {
     this.client = client;
   }
 
-  run(sql, params = []) {
+  async run(sql, params = []) {
     if (!sql) throw new Error("SQL query required");
-
-    return new Promise((resolve, reject) => {
-      this.client.query(sql, params).then(response => {
-        return resolve(response.rows);
-      }).catch(error => {
-        return reject(error);
-      })
-    });
+    let response = await this.client.query(sql, params);
+    return response.rows;
   }
 
 }
