@@ -19,10 +19,8 @@ class BaseDao {
 
     return new Promise((resolve, reject) => {
       this.client.query(sql, params).then(response => {
-        this.client.end();
         return resolve(response.rows);
       }).catch(error => {
-        this.client.end();
         return reject(error);
       })
     });

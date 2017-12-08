@@ -5,8 +5,12 @@ class TicketsDao extends BaseDao {
     super();
   }
 
-  async getAll() {
-    return this.run(`SELECT * FROM tickets LIMIT 100`)
+  async getAll(limit) {
+    return this.run(`SELECT * FROM tickets LIMIT $1`, [limit])
+  }
+
+  async findOne(id) {
+    return this.run(`SELECT * FROM tickets WHERE ticket_no=$1`, [id]);
   }
 }
 
