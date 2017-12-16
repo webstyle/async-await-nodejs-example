@@ -19,4 +19,8 @@ class App {
   }
 }
 
-new App().main();
+new App()
+  .main()
+  .catch((error) => {
+    console.log(`Dasturda xatoli: ${error.message}`);
+  });
